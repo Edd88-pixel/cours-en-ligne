@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une Question</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Créer une Question</h1>
+        <form id="create-question-form" action="create_question.php" method="POST">
+            <label for="exam_id">ID de l'Examen :</label>
+            <input type="number" id="exam_id" name="exam_id" required>
+
+            <label for="question">Question :</label>
+            <textarea id="question" name="question" rows="4" required></textarea>
+
+            <label for="answer_type">Type de Question :</label>
+            <select id="answer_type" name="answer_type" required>
+                <option value="ouverte">Réponse Ouverte</option>
+                <option value="qcm">QCM</option>
+            </select>
+
+            <!-- Réponse ouverte -->
+            <div id="open-answer-container">
+                <label for="answer">Réponse :</label>
+                <input type="text" id="answer" name="answer">
+            </div>
+
+            <!-- QCM -->
+            <div id="qcm-container" class="hidden">
+                <label>Options de Réponse :</label>
+                <div id="choices-container">
+                    <div class="choice">
+                        <input type="text" name="choices[]" placeholder="Option 1">
+                    </div>
+                    <div class="choice">
+                        <input type="text" name="choices[]" placeholder="Option 2">
+                    </div>
+                </div>
+                <button type="button" id="add-choice">Ajouter une Option</button>
+
+                <label for="correct_choice">Bonne Réponse (Numéro d'Option) :</label>
+                <input type="number" id="correct_choice" name="correct_choice" min="0" placeholder="Numéro d'option correcte">
+            </div>
+
+            <button type="submit">Créer Question</button>
+        </form>
+    </div>
+
+    <script src="create_question.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Répondre aux Questions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Répondre aux Questions</h1>
+        <form id="answer-questions-form" action="answer_questions.php" method="POST">
+            <input type="hidden" id="exam_id" name="exam_id" value="1"> <!-- ID de l'examen à définir dynamiquement -->
+
+            <!-- Les questions seront chargées ici via JavaScript -->
+            <div id="questions-container"></div>
+
+            <button type="submit">Soumettre les Réponses</button>
+        </form>
+    </div>
+    <script src="answer_questions.js"></script>
+</body>
+</html>

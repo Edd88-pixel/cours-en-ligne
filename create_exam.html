@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un Examen</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Créer un Examen</h1>
+        <form id="create-exam-form" action="create_exam.php" method="POST">
+            <label for="title">Titre de l'Examen :</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Description :</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+
+            <label for="start_time">Heure de Début :</label>
+            <input type="datetime-local" id="start_time" name="start_time" required>
+
+            <label for="end_time">Heure de Fin :</label>
+            <input type="datetime-local" id="end_time" name="end_time" required>
+
+            <button type="submit">Créer Examen</button>
+        </form>
+    </div>
+    <script src="create_exam.js"></script>
+</body>
+</html>

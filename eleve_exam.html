@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passer un Examen</title>
+    <link rel="stylesheet" href="eleve_exam.css">
+</head>
+<body>
+    <header>
+        <h1>Passer un Examen</h1>
+        <nav>
+            <ul>
+                <li><a href="eleve_dashboard.html">Tableau de Bord</a></li>
+                <li><a href="eleve_results.html">Voir les Résultats</a></li>
+                <li><a href="logout.php" id="logout">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="exam-section">
+            <h2>Choisir un Examen</h2>
+            <div id="exam-list">
+                <label for="exam-select">Sélectionner un examen :</label>
+                <select id="exam-select" title="Sélectionner un examen">
+                    <option value="">Sélectionner un examen</option>
+                    <!-- Options dynamiques des examens -->
+                </select>
+                <button id="start-exam-button" disabled>Commencer l'Examen</button>
+            </div>
+            <div id="timer-display">00:00</div>
+        </section>
+        <!-- Section pour les questions de l'examen -->
+        <section id="questions-section" style="display: none;">
+            <form id="exam-form">
+                <!-- Les questions seront insérées ici dynamiquement -->
+                <button type="submit">Soumettre</button>
+            </form>
+        </section>
+    </main>
+    <script src="eleve_exam.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gérer les Examens</title>
+    <link rel="stylesheet" href="css/manage_exams.css">
+</head>
+<body>
+    <header>
+        <h1>Gérer les Examens</h1>
+        <nav>
+            <ul>
+                <li><a href="enseignant_dashboard.html">Tableau de Bord</a></li>
+                <li><a href="logout.php">Déconnexion</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Créer un Nouvel Examen</h2>
+            <form id="create-exam-form">
+                <label for="title">Titre de l'examen :</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="description">Description :</label>
+                <textarea id="description" name="description" required></textarea>
+
+                <label for="start_time">Date et heure de début :</label>
+                <input type="datetime-local" id="start_time" name="start_time" required>
+
+                <label for="end_time">Date et heure de fin :</label>
+                <input type="datetime-local" id="end_time" name="end_time" required>
+
+                <label for="pdf">Télécharger un PDF contenant les questions :</label>
+                <input type="file" id="pdf" name="pdf" accept=".pdf">
+
+                <button type="submit">Créer</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Ajouter des Questions Manuellement</h2>
+            <form id="manual-questions-form">
+                <label for="exam-select">Sélectionnez un examen :</label>
+                <select id="exam-select" name="exam_id" required>
+                    <option value="">Sélectionnez un examen</option>
+                    <!-- Les options seront ajoutées dynamiquement -->
+                </select>
+
+                <div id="questions-container">
+                    <!-- Les questions manuelles, QCM et titres de section seront ajoutées ici -->
+                </div>
+                <button type="button" id="add-question">Ajouter une Question</button>
+                <button type="button" id="add-mcq">Ajouter un QCM</button>
+                <button type="button" id="add-section-title">Ajouter un Titre de Section</button>
+                <button type="submit">Sauvegarder les Questions</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Vos Examens</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Début</th>
+                        <th>Fin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les examens seront ajoutés dynamiquement ici -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="manage_exams.js"></script>
+</body>
+</html>

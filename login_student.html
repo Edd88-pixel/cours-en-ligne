@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Élève - Passation d'Examen</title>
+    <link rel="stylesheet" href="styles4.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Connexion Élève</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="register.html">S'inscrire</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="login-form">
+                <h2>Se Connecter</h2>
+                <form action="login_student.php" method="post">
+                    <label for="username">Nom d'utilisateur :</label>
+                    <input type="text" id="username" name="username" required>
+                    
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <button type="submit" class="btn">Se Connecter</button>
+                </form>
+                <p>Vous n'avez pas de compte ? <a href="register.html">Inscrivez-vous ici</a>.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Passation d'Examen en Ligne. Tous droits réservés.</p>
+        </div>
+    </footer>
+    <script src="login.js"></script>
+</body>
+</html>
