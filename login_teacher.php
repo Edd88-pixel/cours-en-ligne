@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['role'] = $user['role'];
 
         // Mettre à jour le statut de la session et l'heure de la dernière connexion
-        $update = $pdo->prepare("UPDATE users SET session_status = 'online', last_login = NOW() WHERE id = :id");
+        $update = $pdo->prepare("UPDATE users SET session_status = TRUE, last_login = NOW() WHERE id = :id");
         $update->execute(['id' => $user['id']]);
 
         // Redirection

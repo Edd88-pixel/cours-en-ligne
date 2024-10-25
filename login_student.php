@@ -47,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $auth_id = 1 + $user['id']; // Exemple simple : ID utilisateur + 1, + 2, etc.
 
         // Mettre à jour le statut de la session, l'heure de la dernière connexion et l'ID d'authentification
-        $update = $pdo->prepare("UPDATE users SET session_status = 'online', last_login = NOW(), auth_id = :auth_id WHERE id = :id");
-        $update->execute(['auth_id' => $auth_id, 'id' => $user['id']]);
+        $update = $pdo->prepare("UPDATE users SET session_status = TRUE, last_login = NOW() WHERE id = :id");
+        $update->execute(['id' => $user['id']]);
 
         // Redirection vers la page d'origine ou tableau de bord
         $redirectUrl = $_GET['redirect'] ?? 'eleve_dashboard.html';
