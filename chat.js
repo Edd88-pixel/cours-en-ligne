@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function loadMessages() {
         fetch('get_messages.php')
             .then(response => {
-                // Vérifie si la réponse est au format JSON
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -15,7 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 console.log('Data received from get_messages.php:', data);
 
-                // Vérifie si data est un tableau
+                // Vérifie si la réponse contient un champ 'success' et gère les erreurs
+                if (data.success === false) {
+                    console.error('Error from get_messages.php:', data.error);
+                    return; // Arrête le chargement si une erreur est détectée
+                }
+
+                // Vérifie si data est un tableau pour afficher les messages
                 if (Array.isArray(data)) {
                     chatBox.innerHTML = ''; // Efface les anciens messages
 
@@ -50,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 body: JSON.stringify({ message }) // Envoie le message au format JSON
             })
             .then(response => {
-                // Vérifie si la réponse est au format JSON
                 if (!response.ok) {
                     throw new Error(`Network response was not ok, status: ${response.status}`);
                 }

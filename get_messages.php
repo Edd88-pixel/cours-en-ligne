@@ -7,7 +7,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['success' => false, 'error' => "Utilisateur non authentifié."]);
+    echo json_encode(['success' => false, 'error' => 'Utilisateur non authentifié.']);
     exit();
 }
 
@@ -28,9 +28,9 @@ try {
     }, $messages);
 
     // Renvoi des messages au format JSON
-    echo json_encode($result);
+    echo json_encode(['success' => true, 'messages' => $result]);
 } catch (Exception $e) {
-    // En cas d'erreur, renvoyer une réponse JSON vide
+    // En cas d'erreur, renvoyer une réponse JSON avec l'erreur
     echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
 ?>
