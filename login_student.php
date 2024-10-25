@@ -14,9 +14,14 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Si la session est déjà active, on ne la régénère pas
-if (session_status() === PHP_SESSION_ACTIVE) {
-    // On ne régénère pas l'ID de session ici, on garde celui existant.
-     session_regenerate_id(true); // Cette ligne est commentée pour ne pas régénérer l'ID
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start([
+        'cookie_lifetime' => 86400,
+        'cookie_secure' => false, // Désactivé en mode développement local. Changez pour true en production avec HTTPS
+        'cookie_httponly' => true,
+        'cookie_samesite' => 'Strict'
+    ]);
+    session_regenerate_id(true); // Cette ligne régénère l'ID de session
 }
 
 // Traitement du formulaire de connexion
@@ -26,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Requête pour récupérer le hash du mot de passe et le rôle de l'utilisateur
     $stmt = $pdo->prepare('SELECT id, username, password_hash, role FROM users WHERE username = :username AND role = :role');
-    
+
     // Exécuter la requête en passant le rôle comme paramètre
     $stmt->execute(['username' => $username, 'role' => 'student']);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -38,9 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
 
-        // Mettre à jour le statut de la session et l'heure de la dernière connexion
-        $update = $pdo->prepare("UPDATE users SET session_status = 'online', last_login = NOW() WHERE id = :id");
-        $update->execute(['id' => $user['id']]);
+        // Assigner un ID d'authentification unique
+        $auth_id = 1 + $user['id']; // Exemple simple : ID utilisateur + 1, + 2, etc.
+
+        // Mettre à jour le statut de la session, l'heure de la dernière connexion et l'ID d'authentification
+        $update = $pdo->prepare("UPDATE users SET session_status = 'online', last_login = NOW(), auth_id = :auth_id WHERE id = :id");
+        $update->execute(['auth_id' => $auth_id, 'id' => $user['id']]);
 
         // Redirection vers la page d'origine ou tableau de bord
         $redirectUrl = $_GET['redirect'] ?? 'eleve_dashboard.html';
@@ -50,4 +58,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo 'Nom d\'utilisateur ou mot de passe incorrect.';
     }
 }
-?>
